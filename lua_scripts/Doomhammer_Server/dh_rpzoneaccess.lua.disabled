@@ -1,0 +1,65 @@
+local AllSeeingToken = 58067
+local RighteousToken = 58068
+local DamnedToken = 58069
+local CorruptToken = 58070
+
+local function BlackfathomDeepsToken(event, player, item, target)
+    if item:GetEntry() == AllSeeingToken and player:GetReputation(1161) == 3000 and player:GetMapId() == 48 and player:IsInGroup() == false then
+		player:SetPhaseMask(4)
+    end
+end
+
+local function ScarletCrusadeToken(event, player, item, target)
+    if item:GetEntry() == RighteousToken and player:GetReputation(1164) == 3000 and player:GetMapId() == 189 and player:IsInGroup() == false  then
+		player:SetPhaseMask(4)
+    end
+end
+
+local function ScholomanceToken(event, player, item, target)
+    if item:GetEntry() == DamnedToken and player:GetReputation(1163) == 3000 and player:GetMapId() == 289 and player:IsInGroup() == false  then
+		player:SetPhaseMask(4)
+    end
+end
+
+local function RagefireChasmToken(event, player, item, target)
+    if item:GetEntry() == CorruptToken and player:GetReputation(1165) == 3000 and player:GetMapId() == 389 and player:IsInGroup() == false  then
+		player:SetPhaseMask(4)
+    end
+end
+
+local function OnMapUpdate_Blackfathom(event, map, player)
+if map:GetMapId() == 48 and player:GetPhaseMask() == 4 and player:HasItem(AllSeeingToken) then
+	player:SetPhaseMask(1)
+end
+
+end
+
+local function OnMapUpdate_Scarlet(event, map, player)
+if map:GetMapId() == 189 and player:GetPhaseMask() == 4 and player:HasItem(RighteousToken) then
+	player:SetPhaseMask(1)
+end
+
+end
+
+local function OnMapUpdate_Scholomance(event, map, player)
+if map:GetMapId() == 289 and player:GetPhaseMask() == 4 and player:HasItem(DamnedToken) then
+	player:SetPhaseMask(1)
+end
+
+end
+
+local function OnMapUpdate_ShadowCouncil(event, map, player)
+if map:GetMapId() == 389 and player:GetPhaseMask() == 4 and player:HasItem(CorruptToken) then
+	player:SetPhaseMask(1)
+end
+
+end
+
+RegisterItemEvent(AllSeeingToken, 2, BlackfathomDeepsToken)
+RegisterItemEvent(RighteousToken, 2, ScarletCrusadeToken)
+RegisterItemEvent(DamnedToken, 2, ScholomanceToken)
+RegisterItemEvent(CorruptToken, 2, RagefireChasmToken)
+RegisterServerEvent(22, OnMapUpdate_Blackfathom)
+RegisterServerEvent(22, OnMapUpdate_Scarlet)
+RegisterServerEvent(22, OnMapUpdate_Scholomance)
+RegisterServerEvent(22, OnMapUpdate_ShadowCouncil)
